@@ -33,3 +33,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#余計なファイルを追加しない為の設定追加
+/node_modules
