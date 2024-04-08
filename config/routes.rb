@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   
   #Userページ
   resources :users
-  get "/user" => 'users#index'
+  # get "/user" => 'users#index'
 end
