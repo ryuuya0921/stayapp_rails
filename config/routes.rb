@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  #HomeTopページ
-  get '/' => 'pages#home'
+  # ホームページ
+  root 'pages#home'
   
-  #User
-  resources :events
-  get '/users' => 'users#index'
-  
+  #Userページ
+  resources :users
+  get "/user" => 'users#index'
 end
