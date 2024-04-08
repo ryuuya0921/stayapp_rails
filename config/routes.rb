@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   
   #Userページ
   resources :users
-  # get "/user" => 'users#index'
+  get '/users/new', to: 'users#new' # ユーザー登録フォームの表示
+
 end
