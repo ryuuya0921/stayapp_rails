@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+
   # ホームページ
   root 'pages#home'
   
@@ -9,4 +7,9 @@ Rails.application.routes.draw do
   resources :users
   get '/users/new', to: 'users#new' # ユーザー登録フォームの表示
 
+  #Sessions
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
 end
