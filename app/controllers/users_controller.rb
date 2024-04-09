@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     
     if @user.save
 
-      flash[:notice] = 'イベントが作成されました'
+      flash[:notice] = 'ユーザーが作成されました'
       redirect_to users_path
 
     else
