@@ -1,18 +1,29 @@
 <h3>新規登録</h3>
 
-<form>
-    <p>ユーザー名 *</p>
-    <input type="text" placeholder="ユーザー名を入力">
+<%= form_with(url: users_path, method: "post") do |form| %>
+    <div>
+        <%= form.label :name, "ユーザー名 *" %><br>
+        <%= form.text_field :name, placeholder: "ユーザー名を入力" %>
+    </div>
 
-    <p>メールアドレス *</p>
-    <input type="email" placeholder="メールアドレスを入力">
+    <div>
+        <%= form.label :email, "メールアドレス *" %><br>
+        <%= form.email_field :email, placeholder: "メールアドレスを入力" %>
+    </div>
 
-    <p>パスワード *</p>
-    <input type="password"  placeholder="パスワードを入力" maxlength="8"></label>
+    <div>
+        <%= form.label :password, "パスワード *" %><br>
+        <%= form.password_field :password, placeholder: "パスワードを入力", maxlength: 8 %>
+    </div>
 
-    <p>確認用パスワード *</p>
-    <input type="password"  placeholder="確認用パスワード入力" maxlength="8" id="confirm_password">
-</form>
+    <div>
+        <%= form.label :password_confirmation, "確認用パスワード *" %><br>
+        <%= form.password_field :password_confirmation, placeholder: "確認用パスワード入力", maxlength: 8, id: "confirm_password" %>
+    </div>
 
-<%= form.submit "新しいアカウントを作成" %>
-<p>アカウントをお持ちの方はログイン</p>
+    <div>
+        <%= form.submit "新しいアカウントを作成" %>
+    </div>
+
+<% end %>
+<%= link_to "アカウントをお持ちの方はログイン", login_path %>
