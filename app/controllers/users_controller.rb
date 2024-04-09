@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def def new
+  def new
     @user = User.new
   end
 
@@ -25,5 +25,10 @@ class UsersController < ApplicationController
   def destroy
 
   end
-  
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 end
