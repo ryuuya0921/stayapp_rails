@@ -10,12 +10,20 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-    <header>
-      <h1><%= link_to '宿泊予約アプリ', root_path %></h1>
-      <p><%= link_to 'ログイン', login_path %></p>
-      <p><%= link_to '新規登録', new_user_path %></p>
-    </header>
-  </body>
+<body>
+  <%= yield %>
+  <header>
+    <h1><%= link_to '宿泊予約アプリ', root_path %></h1>
+
+
+    <% if current_user %>
+      <p><%= current_user.name %></p>
+    <% else %>
+      <%= link_to 'ログイン', login_path %>
+      <%= link_to '新規登録', new_user_path %>
+    <% end %>
+  </header>
+</body>
+
+
 </html>
