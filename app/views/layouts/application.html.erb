@@ -27,10 +27,13 @@
     <%# #reservations/index %>
     <p>予約済み一覧</p>
     <%# rooms/index %>
-    <p>登録ずみ一覧</p>
+    <p>登録済み一覧</p>
     <%# users/ controller設定 %>
-    <p>アカウント設定</p>
-    
+    <% if current_user %>
+      <p><%= link_to 'アカウント設定', account_settings_user_path(current_user) %></p>
+    <% end %>
+
+
   </header>
   </body>
   <%= javascript_include_tag 'rails-ujs' %>
