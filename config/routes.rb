@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   # ホームページ
   root 'pages#home'
+
   
   #Userページ
   resources :users
@@ -10,6 +11,6 @@ Rails.application.routes.draw do
   #Sessions
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  delete '/logout', to: 'sessions#destroy' # ログアウトのルートを追加
   
 end

@@ -10,20 +10,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-<body>
-  <%= yield %>
+  <body>
+    <%= yield %>
   <header>
     <h1><%= link_to '宿泊予約アプリ', root_path %></h1>
-
-
     <% if current_user %>
       <p><%= current_user.name %></p>
+      <%= link_to 'ログアウト', logout_path, method: :delete %>
     <% else %>
-      <%= link_to 'ログイン', login_path %>
-      <%= link_to '新規登録', new_user_path %>
+      <p><%= link_to 'ログイン', login_path %></p>
+      <p><%= link_to '新規登録', new_user_path %></p>
     <% end %>
   </header>
-</body>
-
+  </body>
+  <%= javascript_include_tag 'rails-ujs' %>
 
 </html>
