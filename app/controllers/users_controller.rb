@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show]
+
+  before_action :require_login, only: [:show, :account_settings, :profile_settings, :update]
+
   def index
     @users = User.all
   end
@@ -32,6 +34,26 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  #アカウント/プロフィール設定
+  def account_settings
+    @user = current_user
+  end
+
+  def profile_settings
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+
+    if @user.update(user_params)
+      flash[:notice] = '設定が更新されました'
+      redirect_to root_path
+    else
+      render :account_settings
+    end
+  end
+
   private
 
   def require_login
@@ -42,6 +64,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio, :profile_picture)
   end
 end
