@@ -43,16 +43,36 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def update
+  #ユーザー編集
+  def edit
     @user = current_user
+  end
 
-    if @user.update(user_params)
+  def update_account_settings
+    @user = current_user
+  
+    if @user.authenticate(params[:current_password]) && @user.update(user_params)
       flash[:notice] = '設定が更新されました'
-      redirect_to root_path
+      redirect_to root_path # 更新後にホームページにリダイレクト
     else
-      render :account_settings
+      flash.now[:alert] = '現在のパスワードが間違っています'
+      render :edit # 現在のパスワードが間違っているため、編集ページにリダイレクト
     end
   end
+
+  def update_password #パスワード変更用
+    @user = current_user
+  
+    if @user.authenticate(params[:current_password]) && @user.update(password_params)
+      flash[:notice] = 'パスワードが更新されました'
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'パスワードの更新に失敗しました'
+      render :edit
+    end
+  end
+  
+  
 
   private
 
@@ -65,5 +85,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio, :profile_picture)
-  end
+  end  
 end
