@@ -17,7 +17,7 @@
   <% if current_user %>
     <div class="user-info">
       <p><%= current_user.name %></p>
-    <% unless current_page?(controller: 'users', action: 'account_settings') %><%# アカウント設定の場合は画像表示しない設定 %>
+    <% unless current_page?(account_settings_user_path(current_user)) %><%# アカウント設定の場合は画像表示しない設定 %>
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar.variant(resize: "50x50") %>
       <% else %>

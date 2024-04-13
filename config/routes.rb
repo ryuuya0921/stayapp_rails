@@ -11,11 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
-  #Userページ
-  resources :users
-  get '/users/new', to: 'users#new' # ユーザー登録フォームの表示
-
   #Sessions
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
