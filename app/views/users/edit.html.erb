@@ -1,7 +1,6 @@
 <!-- app/views/users/edit.html.erb -->
 
-<%= form_with(model: @user, url: update_password_user_path(@user), method: :patch) do |form| %>
-
+<%= form_with(model: @user) do |form| %>
   <div>
     <%= form.label :email, "新しいメールアドレス：" %>
     <%= form.email_field :email, placeholder: "新しいメールアドレスを入力" %>
@@ -25,5 +24,17 @@
   <div>
     <%= form.submit "更新" %>
   </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>  
 
 <% end %>

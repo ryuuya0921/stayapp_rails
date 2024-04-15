@@ -48,32 +48,25 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def update_account_settings
+  def update
     @user = current_user
-  
-    if @user.authenticate(params[:current_password]) && @user.update(user_params)
-      flash[:notice] = '設定が更新されました'
-      redirect_to root_path # 更新後にホームページにリダイレクト
+    Rails.logger.debug "Sent password: #{params[:user][:password]}"
+    Rails.logger.debug "Current password: #{params[:current_password]}"
+
+    if @user.authenticate(params[:user][:current_password])
+      if @user.update(user_params)
+        flash[:notice] = '設定が更新されました'
+        redirect_to root_path # 更新後にホームページにリダイレクト
+      else
+        flash.now[:alert] = '設定の更新に失敗しました'
+        render :edit # 更新に失敗した場合は編集ページを再表示
+      end
     else
       flash.now[:alert] = '現在のパスワードが間違っています'
       render :edit # 現在のパスワードが間違っているため、編集ページにリダイレクト
     end
   end
-
-  def update_password #パスワード変更用
-    @user = current_user
   
-    if @user.authenticate(params[:current_password]) && @user.update(password_params)
-      flash[:notice] = 'パスワードが更新されました'
-      redirect_to root_path
-    else
-      flash.now[:alert] = 'パスワードの更新に失敗しました'
-      render :edit
-    end
-  end
-  
-  
-
   private
 
   def require_login
@@ -84,6 +77,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio, :profile_picture)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end  
+  
 end
