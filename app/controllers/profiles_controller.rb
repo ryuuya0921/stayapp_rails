@@ -3,18 +3,18 @@ class ProfilesController < ApplicationController
     @user = current_user
   end
 
-  def update
+
+  def update_profile
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = 'プロフィールが更新されました'
       redirect_to root_path
     else
       flash.now[:alert] = 'プロフィールの更新に失敗しました'
-      render :edit
+      render :edit_profile
     end
   end
-
-
+  
   private
 
   def user_params

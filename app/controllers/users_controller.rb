@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       render :edit # 現在のパスワードが間違っているため、編集ページにリダイレクト
     end
   end
-  
+
   private
 
   def require_login
