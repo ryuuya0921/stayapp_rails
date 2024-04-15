@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'profiles/edit_profile'
   # ホームページ
   root 'pages#home'
 
@@ -16,16 +17,28 @@ Rails.application.routes.draw do
 
 # config/routes.rb
 
-resources :users do
-  get 'edit', on: :member # 編集ページ
-  get 'account_settings', on: :member # アカウント設定ページ
-  patch 'update_account_settings', on: :member # アカウント設定の更新
-  patch 'update_password', on: :member # パスワードの更新
-  get 'profile_settings', on: :member # プロフィール設定ページ
-end
+  resources :users do
+    get 'edit', on: :member # 編集ページ
+    get 'account_settings', on: :member # アカウント設定ページ
+    patch 'update_account_settings', on: :member # アカウント設定の更新
+    patch 'update_password', on: :member # パスワードの更新
+    get 'profile_settings', on: :member # プロフィール設定ページ
 
+  end
 
+  resources :users do
+    get 'profile_settings', on: :member
+    get 'edit_profile', on: :member
+  end
 
+  resources :users do
+    get 'profile_settings', on: :member
+  end
+  
+  get 'edit_profile', to: 'profiles#edit_profile', as: 'edit_profile'
+  
+  
+  
 
   resources :users
   get '/users/new', to: 'users#new' # 新規登録ページへのルートを追加

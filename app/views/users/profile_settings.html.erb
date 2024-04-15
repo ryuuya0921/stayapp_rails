@@ -2,7 +2,9 @@
 
 <p><%= link_to 'アカウント', account_settings_user_path(current_user) %></p>
 <p><%= link_to 'プロフィール', profile_settings_user_path(current_user) %></p>
-<p>編集</p>
+
+<%= link_to "プロフィールを編集", edit_profile_path(current_user) %>
+
 
 <h2>アイコン画像</h2>
 <h2><%= @user.name %></h2>
