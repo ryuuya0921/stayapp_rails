@@ -33,9 +33,7 @@ class ProfilesController < ApplicationController
   
   
   def user_params_without_password
-    Rails.logger.debug "User params before excluding password: #{user_params}"
     params_without_password = user_params.except(:password, :password_confirmation)
-    Rails.logger.debug "User params after excluding password: #{params_without_password}"
     params_without_password
   end
   
