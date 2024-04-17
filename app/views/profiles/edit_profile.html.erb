@@ -12,6 +12,10 @@
     <%= form.text_field :name, placeholder: "新しい名前を入力" %>
   </div>
 
+  <div>
+    <%= form.label :introduction, "自己紹介" %><br>
+    <%= form.text_area :introduction, cols: 30, rows: 3, placeholder: "入力" %>
+  </div>
 
   <div>
     <%= form.submit "更新" %>
