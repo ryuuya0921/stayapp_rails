@@ -4,19 +4,6 @@ Rails.application.routes.draw do
   # ホームページ
   root 'pages#home'
 
-  # ユーザー関連
-  # resources :users, except: [:new] do
-  #   member do
-  #     get 'account_settings' # アカウント設定ページ
-  #     get 'profile_settings' # プロフィール設定ページ
-  #     get 'edit' # 編集ページ
-  #     patch 'account_settings', to: 'users#update_account_settings'
-  #     patch 'update_password', to: 'users#update_password', on: :collection
-  #   end
-  # end
-
-# config/routes.rb
-
   resources :users do
     get 'edit', on: :member # 編集ページ
     get 'account_settings', on: :member # アカウント設定ページ
@@ -35,8 +22,11 @@ Rails.application.routes.draw do
     get 'profile_settings', on: :member
   end
 
-get '/profiles/:id/edit', to: 'profiles#edit_profile', as: 'edit_profile'
-patch '/profiles/:id/update_profile', to: 'profiles#update_profile', as: 'update_profile'
+resources :profiles, only: [:edit, :update]#テスト
+patch '/profiles/:id', to: 'profiles#create_or_update_profile', as: 'create_or_update_profile'
+
+
+patch '/profiles/:id/update_profile', to: 'profiles#create_or_update_profile', as: 'update_profile'
 
 
   resources :users
