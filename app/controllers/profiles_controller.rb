@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   def update_profile
     @user = current_user
+
     if @user.update(user_params)
       flash[:notice] = 'プロフィールが更新されました'
       redirect_to root_path

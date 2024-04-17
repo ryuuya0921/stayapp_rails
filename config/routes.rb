@@ -34,11 +34,10 @@ Rails.application.routes.draw do
   resources :users do
     get 'profile_settings', on: :member
   end
-  
-  get 'edit_profile', to: 'profiles#edit_profile', as: 'edit_profile'
-  
-  
-  
+
+get '/profiles/:id/edit', to: 'profiles#edit_profile', as: 'edit_profile'
+patch '/profiles/:id/update_profile', to: 'profiles#update_profile', as: 'update_profile'
+
 
   resources :users
   get '/users/new', to: 'users#new' # 新規登録ページへのルートを追加
