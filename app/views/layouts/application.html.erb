@@ -33,11 +33,11 @@
 
 
     <%# rooms/new %>
-    <p>施設の新規登録</p> 
-    <%# #reservations/index %>
+    <p><%= link_to '施設の新規登録', new_room_path %></p> 
+  
     <p>予約済み一覧</p>
     <%# rooms/index %>
-    <%= link_to '登録済み一覧', rooms_path %>
+    <p><%= link_to '登録済み一覧', rooms_path %></p>
 
     <% if current_user %>
       <p><%= link_to 'アカウント設定', account_settings_user_path(current_user) %></p>
