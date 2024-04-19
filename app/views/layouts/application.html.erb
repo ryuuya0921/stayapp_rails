@@ -37,8 +37,8 @@
     <%# #reservations/index %>
     <p>予約済み一覧</p>
     <%# rooms/index %>
-    <p>登録済み一覧</p>
-    <%# users/ controller設定 %>
+    <%= link_to '登録済み一覧', rooms_path %>
+
     <% if current_user %>
       <p><%= link_to 'アカウント設定', account_settings_user_path(current_user) %></p>
     <% end %>

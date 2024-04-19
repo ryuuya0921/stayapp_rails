@@ -39,5 +39,9 @@ patch '/profiles/:id/update_profile', to: 'profiles#create_or_update_profile', a
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy' # ログアウトのルートを追加
+
+  #Room
+  get '/rooms', to: 'room#index', as: 'rooms'
+  get 'room/show'
   
 end
