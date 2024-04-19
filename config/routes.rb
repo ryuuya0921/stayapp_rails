@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     get 'profile_settings', on: :member
   end
 
+  resources :users, only: [:show]#画像UP
+  
+
 resources :profiles, only: [:edit, :update]#テスト
 patch '/profiles/:id', to: 'profiles#create_or_update_profile', as: 'create_or_update_profile'
 

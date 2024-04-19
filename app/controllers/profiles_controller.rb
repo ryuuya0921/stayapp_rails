@@ -23,13 +23,18 @@ class ProfilesController < ApplicationController
     @user = current_user
   end
   
+  # def user_params
+  #   if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+  #     params.require(:user).permit(:name, :introduction)
+  #   else
+  #     params.require(:user).permit(:name, :introduction, :password, :password_confirmation, :avatar)
+  #   end
+  # end
+
   def user_params
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      params.require(:user).permit(:name, :introduction)
-    else
-      params.require(:user).permit(:name, :introduction, :password, :password_confirmation)
-    end
+    params.require(:user).permit(:name, :introduction, :avatar) # avatar を許可する
   end
+  
   
   
   def user_params_without_password

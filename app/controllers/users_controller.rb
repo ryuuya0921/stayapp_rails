@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    send_data @user.avatar.download, type: @user.avatar.content_type, disposition: 'inline'
   end
 
   def new
