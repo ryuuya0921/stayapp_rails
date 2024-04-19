@@ -1,1 +1,8 @@
 <h2>新規登録</h2>
+
+<%= form_with model: @room, url: rooms_path do |form| %>
+  <div>
+    <%= form.label :name, "施設名：" %>
+    <%= form.email_field :name, placeholder: "ルーム名を入力" %>
+  </div>
+<% end %>
