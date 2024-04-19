@@ -31,13 +31,16 @@
   <p><%= link_to '新規登録', new_user_path %></p>
 <% end %>
 
+    <% if logged_in? %>
+      <%# rooms/new %>
+      <p><%= link_to '施設の新規登録', new_room_path %></p> 
+      
+      <%# reservations/index %>
+      <p>予約済み一覧</p>
 
-    <%# rooms/new %>
-    <p><%= link_to '施設の新規登録', new_room_path %></p> 
-  
-    <p>予約済み一覧</p>
-    <%# rooms/index %>
-    <p><%= link_to '登録済み一覧', rooms_path %></p>
+      <%# rooms/index %>
+      <p><%= link_to '登録済み一覧', rooms_path %></p>
+    <% end %>
 
     <% if current_user %>
       <p><%= link_to 'アカウント設定', account_settings_user_path(current_user) %></p>
