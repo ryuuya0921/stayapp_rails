@@ -12,6 +12,10 @@ class RoomsController < ApplicationController
     @room  = Room.find(params[:id])
   end
 
+  def edit
+    # @roomはset_roomで設定
+  end
+
   def create
     @room = Room.new(room_params)
     if @room.save
@@ -32,6 +36,10 @@ class RoomsController < ApplicationController
   end
   
     private
+  
+  def set_room
+      @room = Room.find(params[:id])
+  end
   
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
