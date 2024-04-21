@@ -24,6 +24,16 @@ class RoomsController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @room = Room.find_by(id: params[:id])
+    if @room
+      @room.destroy
+      redirect_to rooms_path, notice: '施設が正常に削除されました。'
+    else
+      redirect_to rooms_path, alert: '施設が見つかりませんでした。'
+    end
+  end
 
   def create
     @room = Room.new(room_params)
