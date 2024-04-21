@@ -13,7 +13,16 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    # @roomはset_roomで設定
+    @room = Room.find(params[:id])
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      redirect_to rooms_path, notice: '施設情報が正常に更新されました。'
+    else
+      render :edit
+    end
   end
 
   def create
@@ -40,7 +49,7 @@ class RoomsController < ApplicationController
   def set_room
       @room = Room.find(params[:id])
   end
-  
+
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
   end
