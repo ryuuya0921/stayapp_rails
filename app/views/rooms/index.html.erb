@@ -14,7 +14,7 @@
   <tbody>
 <% @rooms.each do |room| %>
   <tr>
-    <td><%= image_tag room.image if room.image.attached? %></td>
+    <td><%= image_tag(room.image, width: "100", height: "60") if room.image.attached? %></td>
     <td><%= room.name %></td>
     <td><%= room.description %></td>
     <td><%= number_to_currency(room.price) %></td>
