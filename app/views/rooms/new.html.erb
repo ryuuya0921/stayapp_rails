@@ -3,6 +3,31 @@
 <%= form_with model: @room, url: rooms_path do |form| %>
   <div>
     <%= form.label :name, "施設名：" %>
-    <%= form.email_field :name, placeholder: "ルーム名を入力" %>
+    <%= form.text_field :name, placeholder: "ルーム名を入力" %>
+  </div>
+  
+  <div>
+  <%= form.label :description, "施設詳細：" %>
+  <%= form.text_area :description, placeholder: "施設詳細を入力" %>
+  </div>
+
+  <div>
+    <%= form.label :price, "料金：" %>
+    <%= form.number_field :price, placeholder: "料金を入力", step: 1, min: 0 %>
+  </div>
+
+  <div>
+    <%= form.label :address, "住所：" %>
+    <%= form.text_field :address, placeholder: "住所を入力" %>
+  </div>
+
+  <div>
+    <%= form.label :image, "施設画像：" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.submit "保存" %>
+    <%= link_to 'キャンセル', root_path, class: 'cancel-button' %>
   </div>
 <% end %>
