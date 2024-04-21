@@ -1,0 +1,12 @@
+<!-- app/views/rooms/show.html.erb -->
+<h1><%= @room.name %></h1>
+<p><%= @room.description %></p>
+<p><%= number_to_currency(@room.price) %></p>
+<p><%= @room.address %></p>
+
+<% if @room.image.attached? %>
+  <%= image_tag @room.image %>
+<% end %>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back to List', rooms_path %>

@@ -12,14 +12,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= image_tag room.image_url %></td>
-        <td><%= room.name %></td>
-        <td><%= room.description %></td>
-        <td><%= room.price %></td>
-        <td><%= room.created_at.strftime("%Y-%m-%d") %></td>
-      </tr>
-    <% end %>
+<% @rooms.each do |room| %>
+  <tr>
+    <td><%= image_tag room.image if room.image.attached? %></td>
+    <td><%= room.name %></td>
+    <td><%= room.description %></td>
+    <td><%= number_to_currency(room.price) %></td>
+    <td><%= room.created_at.strftime("%Y-%m-%d") %></td>
+  </tr>
+<% end %>
+
   </tbody>
 </table>

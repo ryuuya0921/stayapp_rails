@@ -1,7 +1,5 @@
 class RoomsController < ApplicationController
 
-  before_action :require_login, except: [:index, :show]
-
   def index
     @rooms = Room.all
   end
@@ -17,12 +15,20 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      # 保存が成功した場合の処理
-      redirect_to @room, notice: "施設が正常に登録されました。"
+      redirect_to confirm_room_path(@room),notice: '施設が正常に登録されました。'
     else
-        # 保存が失敗した場合の処理
-      render 'new'
+      render :new
     end
+  end
+
+  def confirm #予約確認
+    @room = Room.find(params[:id])
+  end
+
+  def finalize_reservation
+    @room = Room.find(params[:id])
+    # 予約の確定処理をここに書く
+    redirect_to root_path, notice: '予約が完了しました！'
   end
   
     private

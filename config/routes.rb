@@ -41,6 +41,20 @@ patch '/profiles/:id/update_profile', to: 'profiles#create_or_update_profile', a
   delete '/logout', to: 'sessions#destroy' # ログアウトのルートを追加
 
   #Room
-  get '/rooms/new', to: 'rooms#new', as: 'new_room'
-  get '/rooms', to: 'rooms#index', as: 'rooms'
+  resources :rooms do
+    member do
+      get 'confirm'
+      post 'finalize_reservation'
+    end
+  end
+  # get '/rooms/new', to: 'rooms#new', as: 'new_room'
+  # get '/rooms', to: 'rooms#index', as: 'rooms'
+  
+  # #Room予約確認
+  # resources :rooms do
+  #   member do
+  #     get 'confirm'
+  #     post 'finalize_reservation'
+  #   end
+  # end
 end
