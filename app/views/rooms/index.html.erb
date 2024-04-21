@@ -21,7 +21,7 @@
     <td><%= room.created_at.strftime("%Y-%m-%d") %></td>
     <td>
     <%= link_to '編集', edit_room_path(room), class: 'button edit-button' %>
-    <%= link_to '削除', room_path(room), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button' %>
+    <%= link_to '施設を削除', room_path(room), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button' %>
     </td>
   </tr>
 <% end %>
