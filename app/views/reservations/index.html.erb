@@ -2,12 +2,26 @@
   <h2>予約済み一覧</h2>
 
 <table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>施設名</th>
-      <th>紹介文</th>
-      <th>料金</th>
-      <th>作成日</th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th>施設名</th>
+        <th>紹介文</th>
+        <th>合計料金</th>
+        <th>チェックイン</th>
+        <th>チェックアウト</th>
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.room.name %></td>
+        <td><%= reservation.room.description %></td>
+        <td><%= number_to_currency(reservation.room.price) %></td>
+        <td><%= reservation.check_in.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= reservation.check_out.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= reservation.confirmed_at.strftime("%Y-%m-%d %H:%M") if reservation.confirmed_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

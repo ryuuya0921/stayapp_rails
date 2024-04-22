@@ -14,12 +14,13 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find(params[:id])
+    logger.debug "@room is new record? : #{@room.new_record?}"
   end
 
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
-      redirect_to rooms_path, notice: '施設情報が正常に更新されました。'
+      redirect_to room_path(@room), notice: '施設情報が正常に更新されました。'
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      redirect_to confirm_room_path(@room),notice: '施設が正常に登録されました。'
+      redirect_to room_path(@room),notice: '施設が正常に登録されました。'
     else
       render :new
     end

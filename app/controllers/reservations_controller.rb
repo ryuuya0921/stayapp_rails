@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.includes(:room).all
   end
 
 
