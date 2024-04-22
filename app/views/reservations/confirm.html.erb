@@ -1,0 +1,10 @@
+
+<h1>予約内容の確認！！！</h1>
+<% if @reservation %>
+  <p><strong>チェックイン日:</strong> <%= @reservation.check_in %></p>
+  <p><strong>チェックアウト日:</strong> <%= @reservation.check_out %></p>
+  <p><strong>滞在日数:</strong> <%= @reservation.total_days %>日</p>
+  <p><strong>人数:</strong> <%= @reservation.number_of_guests %>人</p>
+<% else %>
+  <p>予約情報がありません。</p>
+<% end %>

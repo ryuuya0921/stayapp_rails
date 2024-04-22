@@ -9,8 +9,9 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room  = Room.find(params[:id])
+    @room = Room.find(params[:id])
   end
+  
 
   def edit
     @room = Room.find(params[:id])
@@ -45,8 +46,14 @@ class RoomsController < ApplicationController
     end
   end
 
-  def confirm #予約確認
-    @room = Room.find(params[:id])
+  def create_reservation # 予約の作成と保存
+    @reservation = Reservation.new(reservation_params)
+    if @reservation.save
+      redirect_to room_path(@reservation.room), notice: '予約が完了しました。'
+    else
+      @room = Room.find(params[:room_id])  # 予約に失敗した場合、同じページに戻る
+      render 'confirm', alert: '予約に失敗しました。入力内容を確認してください。'
+    end
   end
 
   def finalize_reservation
@@ -63,6 +70,10 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
+  end
+
+  def reservation_params
+    params.require(:reservation).permit(:check_in, :check_out, :number_of_guests, :room_id)
   end
   
 end
