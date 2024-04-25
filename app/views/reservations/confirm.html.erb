@@ -1,10 +1,28 @@
+<h1>予約の確認</h1>
+<p><strong>施設名:</strong> <%= @room.name %></p>
+<p><strong>詳細:</strong> <%= @room.description %></p>
+<p><strong>料金:</strong> <%= number_to_currency(@room.price) %></p>
+<p><strong>住所:</strong> <%= @room.address %></p>
+<%= image_tag(@room.image, width: "100", height: "60") if @room.image.attached? %>
 
-<h1>予約内容の確認！！！</h1>
-<% if @reservation %>
-  <p><strong>チェックイン日:</strong> <%= @reservation.check_in %></p>
-  <p><strong>チェックアウト日:</strong> <%= @reservation.check_out %></p>
-  <p><strong>滞在日数:</strong> <%= @reservation.total_days %>日</p>
-  <p><strong>人数:</strong> <%= @reservation.number_of_guests %>人</p>
-<% else %>
-  <p>予約情報がありません。</p>
+<%= form_with model: @reservation, url: confirm_room_reservation_path(@room), local: true do |form| %>
+  <div class="field">
+    <%= form.label :check_in, "チェックイン" %>
+    <%= form.date_field :check_in %>
+  </div>
+
+  <div class="field">
+    <%= form.label :check_out, "チェックアウト" %>
+    <%= form.date_field :check_out %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :number_of_guests, "人数" %>
+    <%= form.number_field :number_of_guests %>
+  </div>
+
+  <%= form.submit 'この内容で予約する', class: 'button' %>
 <% end %>
+
+<%= link_to '編集', edit_room_path(@room), class: 'button' %>
+<%= link_to '戻る', room_path, class: 'button' %>

@@ -10,12 +10,12 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reservation = @room.reservations.first
   end
   
 
   def edit
     @room = Room.find(params[:id])
-    logger.debug "@room is new record? : #{@room.new_record?}"
   end
 
   def update
@@ -40,9 +40,10 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      redirect_to room_path(@room),notice: '施設が正常に登録されました。'
+      redirect_to room_path(@room), notice: '施設が正常に登録されました。'
     else
       render :new
+      flash.now[:alert] = 'エラーが発生しました。入力内容を確認してください。'
     end
   end
 

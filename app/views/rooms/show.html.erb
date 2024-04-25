@@ -4,10 +4,8 @@
 <p><strong>料金:</strong> <%= number_to_currency(@room.price) %></p>
 <p><strong>住所:</strong> <%= @room.address %></p>
 <%= image_tag(@room.image, width: "100", height: "60") if @room.image.attached? %>
-<%= link_to '編集', edit_room_path(@room), class: 'button' %>
-<%= link_to '戻る', new_room_path, class: 'button' %>
 
-<%= form_with model: @reservation, url: confirm_room_reservation_path(@room), local: true do |form| %>
+<%= form_with model: @reservation, url:reservation_path(@room,@reservation), local: true do |form| %>
   <div class="field">
     <%= form.label :check_in, "チェックイン" %>
     <%= form.date_field :check_in %>
@@ -23,3 +21,7 @@
   </div>
   <%= form.submit 'この内容で予約する', class: 'button' %>
 <% end %>
+
+
+<%= link_to '編集', edit_room_path(@room), class: 'button' %>
+<%= link_to '戻る', room_path(@room), class: 'button' %>

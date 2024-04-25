@@ -40,29 +40,14 @@ patch '/profiles/:id/update_profile', to: 'profiles#create_or_update_profile', a
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy' # ログアウトのルートを追加
 
-  #Room
-  # resources :rooms do
-  #   member do
-  #     get 'confirm'
-  #     post 'confirm' 
-  #     post 'finalize_reservation'
-  #   end
-  # end
+  resources :reservations
 
   resources :rooms do
     resources :reservations do
       member do
-        get 'confirm'
-        post 'confirm'  # これは例えば、各予約に対しての確認アクションを意味します
+        get 'confirm', as: 'confirm_room_reservation'
       end
     end
   end
   
-  #reservation
-  resources :reservations do
-    member do
-
-    end
-  end
-
 end

@@ -4,24 +4,32 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.includes(:room).all
   end
 
-  def confirm #予約確認
-    @room = Room.find(params[:id])
-
+  def confirm
+    @room = Room.find_by(id: params[:id])
+    unless @room
+      redirect_to rooms_path, alert: "指定された部屋が存在しません。"
+      return
+    end
+  
     @check_in = params[:check_in]
     @check_out = params[:check_out]
     @number_of_guests = params[:number_of_guests]
   end
+  
+  
 
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
-      redirect_to @reservation, notice: '予約が完了しました'
+      redirect_to confirm_reservations_path, notice: '保存が完了しました。'
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
+  
 
   private
+
   def reservation_params
     params.require(:reservation).permit(:check_in, :check_out, :number_of_guests, :room_id)
   end
