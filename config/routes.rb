@@ -45,7 +45,8 @@ patch '/profiles/:id/update_profile', to: 'profiles#create_or_update_profile', a
   resources :rooms do
     resources :reservations do
       member do
-        get 'confirm', as: 'confirm_room_reservation'
+        get 'confirm'
+        post 'confirm'
       end
     end
   end

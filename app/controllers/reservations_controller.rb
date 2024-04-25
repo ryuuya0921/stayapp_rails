@@ -5,18 +5,21 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    @room = Room.find_by(id: params[:id])
-    unless @room
-      redirect_to rooms_path, alert: "指定された部屋が存在しません。"
-      return
+    @room = Room.find(params[:reservation][:room_id])  # 予約する部屋のIDからRoomオブジェクトを取得
+    logger.debug "Room loaded: #{@room.inspect}"
+    @reservation = Reservation.new(reservation_params)
+    logger.debug "Reservation params: #{reservation_params.inspect}"
+    @reservation.user = current_user
+
+    if @reservation.save
+      redirect_to room_path(@room), notice: '予約が確定されました。'  # 成功時はその部屋の詳細ページへリダイレクト
+      logger.debug "Reservation saved successfully."
+    else
+      logger.debug "Failed to save reservation: #{@reservation.errors.full_messages}"
+      flash[:notice] = '予約が失敗しました。'
+      render "rooms/show", status: :unprocessable_entity  # 失敗時は部屋の詳細ページを再表示
     end
-  
-    @check_in = params[:check_in]
-    @check_out = params[:check_out]
-    @number_of_guests = params[:number_of_guests]
   end
-  
-  
 
   def create
     @reservation = Reservation.new(reservation_params)
