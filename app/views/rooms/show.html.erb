@@ -6,7 +6,6 @@
 <%= image_tag(@room.image, width: "100", height: "60") if @room.image.attached? %>
 
 <%= form_with model: @reservation, url: confirm_room_reservation_path(@room), local: true do |form| %>
-
   <div class="field">
     <%= form.label :check_in, "チェックイン" %>
     <%= form.date_field :check_in %>
@@ -20,7 +19,9 @@
     <%= form.label :number_of_guests, "人数" %>
     <%= form.number_field :number_of_guests %>
   </div>
-    <td><%= form.hidden_field :room_id, value: @room.id %></td>
+
+  <%= form.hidden_field :room_id, value: @room.id %>
+
   <%= form.submit 'この内容で予約する', class: 'button' %>
 <% end %>
 
