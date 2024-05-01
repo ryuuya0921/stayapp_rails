@@ -18,9 +18,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
     @reservation.room = @room
-    
+
     if @reservation.save
-      redirect_to room_path(@room), notice: '予約が確定されました。'  # 成功時はその部屋の詳細ページへリダイレクト
+      redirect_to reservations_path, notice: '予約が確定されました。'  # 成功時はその部屋の詳細ページへリダイレクト
       logger.debug "Reservation saved successfully."
     else
       logger.debug "Failed to save reservation: #{@reservation.errors.full_messages}"
@@ -33,9 +33,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find_by(id: params[:id])
     if @reservation
       @reservation.destroy
-      redirect_to rooms_path, notice: '予約が正常に削除されました。'
+      redirect_to reservations_path, notice: '予約が正常に削除されました。'
     else
-      redirect_to rooms_path, alert: '予約が見つかりませんでした。'
+      redirect_to reservations_path, alert: '予約が見つかりませんでした。'
     end
   end
   
