@@ -8,6 +8,14 @@ class ReservationsController < ApplicationController
     @room = Room.find(params[:reservation][:room_id])  # 予約する部屋のIDからRoomオブジェクトを取得
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
+
+    if @reservation.valid_dates?
+      render :confirm
+    else
+      flash[:alert] = 'チェックアウト日はチェックイン日よりも後でなければなりません。'
+      redirect_to room_path(@room)
+    end
+
   end
 
   def create
