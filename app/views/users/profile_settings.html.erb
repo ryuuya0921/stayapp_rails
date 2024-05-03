@@ -9,10 +9,10 @@
 
 
 <h3>アイコン画像：<% if @user.avatar.attached? %><%= image_tag @user.avatar.variant(resize: "20x20") %></h3>
-<%# <% Rails.logger.debug("Avatar attached: true") デバック%>
+
 <% else %>
   <p>利用可能なアバターはありません</p>
-  <%# <% Rails.logger.debug("Avatar attached: false") デバック%>
+
 <% end %>
 
 <h3>名前：<%= @user.name %></h3>
