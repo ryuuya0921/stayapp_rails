@@ -1,0 +1,33 @@
+<h1>再予約する</h1>
+<p><strong>施設名:</strong> <%= @room.name %></p>
+<p><strong>詳細:</strong> <%= @room.description %></p>
+<p><strong>料金:</strong> <%= number_to_currency(@room.price, unit: "¥", precision: 0, format: "%u%n円") %></p>
+<p><strong>住所:</strong> <%= @room.address %></p>
+
+<% if @room.image.attached? %>
+  <%= image_tag(@room.image, width: "100", height: "60") %>
+<% else %>
+  <%= image_tag('default.png', width: "100", height: "60", alt: "デフォルト画像") %>
+<% end %>
+
+<%= form_with model: @reservation, url: reservation_path(@reservation), method: :patch, local: true do |form| %>
+
+  <div class="field">
+    <%= form.label :check_in, "チェックイン" %>
+    <%= form.date_field :check_in %>
+  </div>
+
+  <div class="field">
+    <%= form.label :check_out, "チェックアウト" %>
+    <%= form.date_field :check_out %>
+  </div>
+  <div class="field">
+    <%= form.label :number_of_guests, "人数" %>
+    <%= form.number_field :number_of_guests %>
+  </div>
+
+  <%= form.hidden_field :room_id, value: @room.id %>
+
+  <%= form.submit '再予約する', class: 'button' %>
+<% end %>
+<%= link_to '戻る', room_path(@room), class: 'button' %>

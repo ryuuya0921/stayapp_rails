@@ -4,6 +4,20 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.includes(:room).all
   end
 
+  def edit
+    @reservation = Reservation.find(params[:id])
+    @room = @reservation.room
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.update(reservation_params)
+      redirect_to reservations_path, notice: '施設情報が正常に更新されました。'
+    else
+      render :edit
+    end
+  end
+
   def confirm
     @room = Room.find(params[:reservation][:room_id])  # 予約する部屋のIDからRoomオブジェクトを取得
     @reservation = Reservation.new(reservation_params)
