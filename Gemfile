@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
+gem 'bootstrap', '~> 5.1.3'
+gem 'jquery-rails'
+
 gem 'byebug'
 
 #画像アップロード
