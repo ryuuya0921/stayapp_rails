@@ -42,6 +42,6 @@ class Reservation < ApplicationRecord
         errors.add(:check_out, "はチェックイン日より後の日付でなければなりません。")
       end
     end
-  
+
 end
 
