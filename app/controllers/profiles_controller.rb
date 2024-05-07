@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = 'プロフィールが更新されました'
       redirect_to profile_settings_user_path(@user)
     else
+      logger.error "プロファイルの更新に失敗しました: " + @user.errors.full_messages.join(", ")
       flash.now[:alert] = 'プロフィールの更新に失敗しました'
       render :edit
     end
