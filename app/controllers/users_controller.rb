@@ -19,10 +19,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      # ユーザーの作成に成功した場合、セッションにユーザーIDを保存して自動的にログイン状態にする
+      session[:user_id] = @user.id
 
       flash[:notice] = 'ユーザーが作成されました'
       redirect_to users_path
-
+      
     else
       render :new
     end
