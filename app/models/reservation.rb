@@ -22,6 +22,22 @@ class Reservation < ApplicationRecord
     end
   end
 
+  def calculate_total_price
+    # 合計料金を再計算するロジックを実装する
+    # 例えば、チェックイン日、チェックアウト日、料金などを元に合計料金を計算する
+    # この例では、仮のロジックとして、1泊あたりの料金を部屋の料金から計算していますが、実際のロジックに合わせて修正してください
+    if valid_dates?
+      self.total_price = total_days * room.price * number_of_guests
+      save
+    else
+      self.total_price = 0
+    end
+  end
+
+  def total_price=(price)
+    self[:total_price] = price
+  end
+
   # 日付が有効かどうかを確認するメソッド
   def valid_dates?
     check_in && check_out && check_out > check_in

@@ -17,7 +17,14 @@
       <tr>
         <td><%= reservation.room.name %></td>
         <td><%= reservation.room.description %></td>
-        <td><%= number_to_currency(reservation.room.price, unit: "¥", precision: 0, format: "%u%n円") %></td>
+      <td>
+        <% if reservation.total_price.present? %>
+          <%= number_to_currency(reservation.total_price, unit: "¥", precision: 0, format: "%u%n円") %>
+        <% else %>
+          <!-- デフォルトの料金を表示 -->
+          <%= number_to_currency(reservation.room.price, unit: "¥", precision: 0, format: "%u%n円") %>
+        <% end %>
+      </td>
         <td><%= reservation.check_in.strftime("%Y-%m-%d") %></td>
         <td><%= reservation.check_out.strftime("%Y-%m-%d") %></td>
         <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>

@@ -12,6 +12,10 @@ class ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
+
+      # チェックイン日、チェックアウト日、人数などを元に合計料金を再計算する
+      @reservation.calculate_total_price
+
       redirect_to reservations_path, notice: '施設情報が正常に更新されました。'
     else
       render :edit

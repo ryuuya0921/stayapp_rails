@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_13_003524) do
+ActiveRecord::Schema.define(version: 2024_05_12_214503) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2024_04_13_003524) do
     t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "total_price", precision: 10, scale: 2, default: "0.0"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
