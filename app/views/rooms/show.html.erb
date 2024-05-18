@@ -33,3 +33,14 @@
 
 <%= link_to '編集', edit_room_path(@room), class: 'button' %>
 <%= link_to '戻る', new_room_path(@room), class: 'button' %>
+
+<%# バリデーションのフラッシュメッセージ設定 %>
+<% if @room.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

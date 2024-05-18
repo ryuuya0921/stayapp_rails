@@ -31,3 +31,14 @@
     <%= link_to 'キャンセル', root_path, class: 'btn btn-outline-danger' %>
   </div>
 <% end %>
+
+<%# バリデーションのフラッシュメッセージ設定 %>
+<% if @room.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
