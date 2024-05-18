@@ -2,3 +2,19 @@
   <%= image_tag('home.png', alt: "Travel Shareのホーム画像", class: "background-image") %>
   <h2 class="overlay-text">Travel Shareで<br>まだ体験したことのない<br>旅をしよう</h2>
 </div>
+
+<h2>おすすめのエリア</h2>
+
+<div class="areas">
+  <div class="area">
+    <%= link_to area_rooms_path(area: '東京') do %>
+      <%= image_tag 'tokyo.jpg', alt: '東京' %>
+      <p>東京</p>
+    <% end %>
+  </div>
+  <div class="area">
+    <%= link_to area_rooms_path(area: '大阪') do %>
+      <%= image_tag 'osaka.jpg', alt: '大阪' %>
+      <p>大阪</p>
+    <% end %>
+  </div>

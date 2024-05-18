@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   # ホームページ
   root 'pages#home'
 
+  resources :rooms do
+    collection do
+      get 'area/:area', to: 'rooms#area', as: 'area'
+    end
+  end
+
   resources :users do
     get 'edit', on: :member # 編集ページ
     get 'account_settings', on: :member # アカウント設定ページ

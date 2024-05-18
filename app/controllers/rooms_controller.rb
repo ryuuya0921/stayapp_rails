@@ -13,6 +13,11 @@ class RoomsController < ApplicationController
     @reservation = Reservation.new
   end
   
+  def area
+    @area = params[:area]
+    @rooms = Room.where("address LIKE ?", "%#{@area}%")
+    render :index
+  end
 
   def edit
     @room = Room.find(params[:id])
