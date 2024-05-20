@@ -1,0 +1,93 @@
+// 変数定義
+$main-font-color: rgb(255, 255, 255);
+$main-font-size: 4em;
+$box-radius: 15px;
+$area-gap: 20px;
+$image-width: 300px;
+$image-height: 400px;
+$text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+.image-overlay-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 100px; // 下部に余白を追加
+
+  .background-image {
+    width: 100%; // コンテナに合わせて画像を拡大
+    height: auto; // 画像のアスペクト比を保持
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 45%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); // 完全に中央に調整
+    color: $main-font-color; // テキストの色
+    font-size: $main-font-size; // テキストのサイズ
+    text-shadow: $text-shadow; // テキストの視認性を高めるための影
+  }
+}
+
+.areaimg {
+  margin-bottom: 50px; // 下部に余白を追加
+}
+
+.areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $area-gap; // アイテム間の間隔を調整
+
+  .area {
+    text-align: center;
+    flex: 1 1 calc(25% - #{$area-gap}); // 各エリアが等間隔で並ぶように調整
+    box-sizing: border-box;
+    margin-bottom: 20px; // エリア内の項目間に余白を追加
+    position: relative;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      width: $image-width; // 画像の幅を調整
+      height: $image-height; // 画像の高さを調整
+      border-radius: $box-radius; // 角を丸くする
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1); // マウスホバー時に拡大
+      }
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    .area-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px;
+      transition: opacity 0.3s ease;
+
+      p {
+        color: $main-font-color;
+        font-size: $main-font-size;
+        font-weight: bold;
+      }
+    }
+
+    &:hover .area-overlay {
+      opacity: 1; // マウスホバー時にオーバーレイを表示
+    }
+  }
+}
