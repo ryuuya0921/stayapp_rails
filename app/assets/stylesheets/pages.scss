@@ -1,6 +1,6 @@
 // 変数定義
 $main-font-color: rgb(255, 255, 255);
-$main-font-size: 4em;
+$main-font-size: 2.5em; // テキストのサイズを調整
 $box-radius: 15px;
 $area-gap: 20px;
 $image-width: 300px;
@@ -15,22 +15,49 @@ $text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   .background-image {
     width: 100%; // コンテナに合わせて画像を拡大
     height: auto; // 画像のアスペクト比を保持
+    border-radius: $box-radius; // 画像の角を丸くする
   }
 
   .overlay-text {
     position: absolute;
-    top: 45%; 
+    top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%); // 完全に中央に調整
     color: $main-font-color; // テキストの色
     font-size: $main-font-size; // テキストのサイズ
     text-shadow: $text-shadow; // テキストの視認性を高めるための影
+    z-index: 1; // テキストを手前に表示
+    font-weight: bold; // テキストを太字に
   }
 }
 
 .areaimg {
   margin-bottom: 50px; // 下部に余白を追加
+  border-bottom: 3px solid #ff838b;
+  text-align: left; // コンテンツを左寄せ
+  width: 45%; // 幅を調整
+  max-width: 800px; // 最大幅を設定
+  margin-left: 20px; // 左側の余白を調整
+  margin-right: auto; // 右側の余白を調整
+  padding-left: 10px; // 内側の余白を追加
+  padding-right: 10px; // 内側の余白を追加
 }
+
+@media (max-width: 600px) {
+  .areaimg {
+    border-bottom-width: 2px; // 小さいデバイスで線を細くする
+  }
+}
+
+
+// .areaimg {
+//   margin-bottom: 50px; // 下部に余白を追加
+//   border-bottom: 3px solid #ff838b;
+//   text-align: left; // コンテンツを右寄せ
+//   width: 15%; // 線の長さを調整
+//   margin-left: auto; // 左側の余白を調整
+//   margin-right: auto; // 右側の余白を調整
+// }
 
 .areas {
   display: flex;
@@ -62,6 +89,8 @@ $text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     p {
       margin-top: 10px;
       font-size: 1.2em;
+      color: $main-font-color; // テキストの色を設定
+      font-weight: bold; // テキストを太字に
     }
 
     .area-overlay {
