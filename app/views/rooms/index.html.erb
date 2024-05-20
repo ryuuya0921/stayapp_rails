@@ -1,6 +1,8 @@
 
   <h2>登録済み一覧</h2>
+<% if @rooms.present? && @area.present? %>
   <h4><%= "#{@area} の検索結果: #{@rooms_count}件" %></h4>
+<% end %>
 
 <table class="table table-hover">
   <thead>
