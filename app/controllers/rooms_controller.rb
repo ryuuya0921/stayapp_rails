@@ -2,6 +2,13 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    
+    if params[:search].present?
+      @rooms = Room.where("address LIKE ?", "%#{params[:search]}%")
+    else
+      @rooms = Room.all
+    end
+
   end
 
   def new
@@ -9,8 +16,17 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
-    @reservation = Reservation.new
+    if params[:id] == "area"
+      # "area"がparams[:id]に来た場合はエリア検索のページにリダイレクト
+      redirect_to area_rooms_path(area: params[:search])
+    else
+      @room = Room.find_by(id: params[:id])
+      if @room
+        @reservation = Reservation.new
+      else
+        redirect_to root_path, alert: '部屋が見つかりませんでした。'
+      end
+    end
   end
   
   def area

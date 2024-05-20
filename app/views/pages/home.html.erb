@@ -3,6 +3,13 @@
   <h2 class="overlay-text">Travel Shareで<br>まだ体験したことのない<br>旅をしよう</h2>
 </div>
 
+<div class="search-form">
+  <%= form_tag(area_rooms_path(area: ''), method: "get", class: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "エリアを検索" %>
+    <%= submit_tag "検索" %>
+  <% end %>
+</div>
+
 <div class="areaimg">
   <h2>おすすめのエリア</h2>
 </div>
