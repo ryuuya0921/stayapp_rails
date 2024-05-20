@@ -2,3 +2,44 @@
   <%= image_tag('home.png', alt: "Travel Shareのホーム画像", class: "background-image") %>
   <h2 class="overlay-text">Travel Shareで<br>まだ体験したことのない<br>旅をしよう</h2>
 </div>
+
+
+<div class="areaimg">
+  <h2>おすすめのエリア</h2>
+</div>
+<div class="areas">
+  <div class="area">
+    <%= link_to area_rooms_path(area: '東京') do %>
+      <%= image_tag 'tokyo.jpg', alt: '東京' %>
+      <div class="area-overlay">
+        <p>東京</p>
+      </div>
+    <% end %>
+  </div>
+  <div class="area">
+    <%= link_to area_rooms_path(area: '大阪') do %>
+      <%= image_tag 'osaka.jpg', alt: '大阪' %>
+      <div class="area-overlay">
+        <p>大阪</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="area">
+    <%= link_to area_rooms_path(area: '京都') do %>
+      <%= image_tag 'kyoto.jpg', alt: '京都' %>
+      <div class="area-overlay">
+        <p>京都</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="area">
+    <%= link_to area_rooms_path(area: '札幌') do %>
+      <%= image_tag 'sapopro.jpg', alt: '札幌' %>
+      <div class="area-overlay">
+        <p>札幌</p>
+      </div>
+    <% end %>
+  </div>
+</div>
