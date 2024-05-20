@@ -32,6 +32,7 @@ class RoomsController < ApplicationController
   def area
     @area = params[:area]
     @rooms = Room.where("address LIKE ?", "%#{@area}%")
+    @rooms_count = @rooms.count
     render :index
   end
 
