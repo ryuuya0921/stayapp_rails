@@ -1,16 +1,21 @@
 class RoomsController < ApplicationController
 
   def index
-    @rooms = Room.all
-    
-    if params[:search].present?
-      @rooms = Room.where("address LIKE ?", "%#{params[:search]}%")
+    if params[:area_search].present?
+      @area = params[:area_search]
+      @rooms = Room.where("address LIKE ?", "%#{@area}%")
+      @rooms_count = @rooms.count
+    elsif params[:room_search].present?
+      search_query = "%#{params[:room_search]}%"
+      @rooms = Room.where("name LIKE ? OR description LIKE ?", search_query, search_query)
+      @rooms_count = @rooms.count
     else
       @rooms = Room.all
+      @rooms_count = @rooms.count
     end
-
   end
-
+  
+  
   def new
     @room  = Room.new
   end
@@ -43,7 +48,7 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
-      redirect_to room_path(@room), notice: '施設情報が正常に更新されました。'
+      redirect_to rooms_path(@room), notice: '施設情報が正常に更新されました。'
     else
       render :edit
     end

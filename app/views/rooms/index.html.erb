@@ -1,8 +1,28 @@
 
   <h2>登録済み一覧</h2>
-<% if @rooms.present? && @area.present? %>
-  <h4><%= "#{@area} の検索結果: #{@rooms_count}件" %></h4>
+
+<% if params[:area_search].present? %>
+  <h4><%= "#{params[:area_search]} の検索結果: #{@rooms_count}件" %></h4>
+<% elsif params[:room_search].present? %>
+  <h4><%= "#{params[:room_search]} の検索結果: #{@rooms_count}件" %></h4>
+<% else %>
+  <h4>全ての施設: <%= @rooms_count %>件</h4>
 <% end %>
+
+<div class="search-form">
+    <%= form_tag(area_rooms_path(area: ''), method: "get", class: "search-form") do %>
+    <%= text_field_tag :area_search, params[:area_search], placeholder: "エリア名を入力" %>
+    <%= submit_tag "検索" %>
+  <% end %>
+</div>
+
+<div class="search-form">
+  <%= form_tag(rooms_path, method: "get", class: "search-form") do %>
+    <%= text_field_tag :room_search, params[:room_search], placeholder: "施設名や詳細を検索" %>
+    <%= submit_tag "検索" %>
+  <% end %>
+</div>
+
 
 <table class="table table-hover">
   <thead>
