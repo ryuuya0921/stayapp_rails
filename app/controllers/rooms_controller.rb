@@ -22,8 +22,11 @@ class RoomsController < ApplicationController
 
   def show
     if params[:id] == "area"
-      # "area"がparams[:id]に来た場合はエリア検索のページにリダイレクト
-      redirect_to area_rooms_path(area: params[:search])
+      if params[:area_search].present?
+        redirect_to rooms_path(area_search: params[:area_search])
+      else
+        redirect_to rooms_path
+      end
     else
       @room = Room.find_by(id: params[:id])
       if @room

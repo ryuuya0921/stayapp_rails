@@ -4,8 +4,8 @@
 </div>
 
 <div class="search-form">
-  <%= form_tag(area_rooms_path(area: ''), method: "get", class: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "エリア名を入力" %>
+    <%= form_tag(area_rooms_path(area: ''), method: "get", class: "search-form") do %>
+    <%= text_field_tag :area_search, params[:area_search], placeholder: "エリア名を入力" %>
     <%= submit_tag "検索" %>
   <% end %>
 </div>
