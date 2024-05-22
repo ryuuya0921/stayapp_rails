@@ -120,3 +120,48 @@ $text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
   }
 }
+
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 上部に配置 */
+  align-items: center;
+  height: 100vh; /* 画面全体の高さ */
+  background-size: cover;
+  background-position: center;
+  padding-top: 50px; /* 上部からの余白 */
+}
+
+.search-form {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* フォームと次の要素の間に余白を追加 */
+  width: 80%; /* 幅を調整 */
+  max-width: 600px; /* 最大幅を設定 */
+  margin-left: auto; /* 左側の余白を調整 */
+  margin-right: auto; /* 右側の余白を調整 */
+}
+
+.search-form input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
