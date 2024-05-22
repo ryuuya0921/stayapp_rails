@@ -2,11 +2,6 @@ require_relative "boot"
 
 require "rails/all"
 
-    # タイムゾーンを日本時間に設定
-    config.time_zone = 'Asia/Tokyo'
-
-    # DB のタイムゾーンも日本時間に設定
-    config.active_record.default_timezone = :local
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -24,5 +19,10 @@ module Stay
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+        # タイムゾーンを日本時間に設定
+        config.time_zone = 'Asia/Tokyo'
+
+        # DB のタイムゾーンも日本時間に設定
+        config.active_record.default_timezone = :local
   end
 end
