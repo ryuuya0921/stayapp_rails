@@ -21,6 +21,7 @@ module Stay
     # config.eager_load_paths << Rails.root.join("extras")
         # タイムゾーンを日本時間に設定
         config.time_zone = 'Asia/Tokyo'
+        config.i18n.default_locale = :ja
 
         # DB のタイムゾーンも日本時間に設定
         config.active_record.default_timezone = :local
