@@ -43,7 +43,7 @@
             <%= image_tag('default.png', width: "100", height: "60", alt: "デフォルト画像") %>
           <% end %>
         </td>
-        <td><%= room.name %></td>
+        <td><%= link_to room.name, room_path(room) %></td>
         <td><%= room.description %></td>
         <td><%= number_to_currency(room.total_price, unit: "¥", precision: 0, format: "%u%n円") %></td>
         <td><%= room.created_at.localtime.strftime("%Y-%m-%d") %></td>
