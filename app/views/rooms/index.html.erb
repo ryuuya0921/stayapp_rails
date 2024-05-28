@@ -45,7 +45,7 @@
         </td>
         <td><%= link_to room.name, room_path(room) %></td>
         <td><%= room.description %></td>
-        <td><%= number_to_currency(room.total_price, unit: "¥", precision: 0, format: "%u%n円") %></td>
+        <td><%= number_to_currency(room.price, unit: "¥", precision: 0, format: "%u%n円") %></td>
         <td><%= room.created_at.localtime.strftime("%Y-%m-%d") %></td>
         <td>
           <%= link_to '編集', edit_room_path(room), class: 'btn btn-outline-success' %>
