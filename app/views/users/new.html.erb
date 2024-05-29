@@ -1,0 +1,37 @@
+<h3>新規登録</h3>
+
+<%= form_with(model: @user, url: users_path) do |form| %>
+    <div>
+        <%= form.label :name, "ユーザー名 *" %><br>
+        <%= form.text_field :name, placeholder: "ユーザー名を入力" %>
+    </div>
+
+    <div>
+        <%= form.label :email, "メールアドレス *" %><br>
+        <%= form.email_field :email, placeholder: "メールアドレスを入力" %>
+    </div>
+
+    <div>
+        <%= form.label :password, "パスワード *" %><br>
+        <%= form.password_field :password, placeholder: "パスワードを入力", maxlength: 8 %>
+    </div>
+
+    <div>
+        <%= form.label :password_confirmation, "確認用パスワード *" %><br>
+        <%= form.password_field :password_confirmation, placeholder: "確認用パスワード入力", maxlength: 8, id: "confirm_password" %>
+    </div>
+
+    <div>
+        <%= form.submit "新しいアカウントを作成" %>
+    </div>
+
+<% end %>
+<%= link_to "アカウントをお持ちの方はログイン", login_path %>
+
+<% if @user.errors.any? %>
+<ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+</ul>
+<% end %>

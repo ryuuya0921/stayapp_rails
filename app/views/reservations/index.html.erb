@@ -1,0 +1,39 @@
+
+  <h2>予約済み一覧</h2>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>施設名</th>
+        <th>紹介文</th>
+        <th>合計料金</th>
+        <th>チェックイン</th>
+        <th>チェックアウト</th>
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.room.name %></td>
+        <td><%= reservation.room.description %></td>
+      <td>
+        <% if reservation.total_price.present? %>
+          <%= number_to_currency(reservation.total_price, unit: "¥", precision: 0, format: "%u%n円") %>
+        <% else %>
+          <!-- デフォルトの料金を表示 -->
+          <%= number_to_currency(reservation.room.price, unit: "¥", precision: 0, format: "%u%n円") %>
+        <% end %>
+      </td>
+        <td><%= reservation.check_in.strftime("%Y-%m-%d") %></td>
+        <td><%= reservation.check_out.strftime("%Y-%m-%d") %></td>
+        <td><%= reservation.created_at.in_time_zone('Asia/Tokyo').strftime("%Y/%m/%d %H:%M") %></td>
+
+        <td>
+          <%= link_to '施設を削除', room_path(reservation.room), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger' %>
+          <%= link_to '再予約する', edit_reservation_path(reservation), class: 'btn btn-outline-success' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

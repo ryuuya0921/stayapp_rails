@@ -1,0 +1,11 @@
+<h1>ログイン</h1>
+
+<%= form_with url: login_path, method: :post do |form| %>
+    <%= form.label :メールアドレス %><br>
+    <%= form.text_field :email, placeholder: "メールアドレスを入力" %><br>
+
+    <%= form.label :パスワード %><br>
+    <%= form.password_field :password, placeholder: "パスワードを入力" %><br>
+    <%= form.submit "ログイン" %>
+<% end %>
+

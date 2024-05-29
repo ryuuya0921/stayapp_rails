@@ -1,0 +1,23 @@
+<p>設定</p>
+
+<p><%= link_to 'アカウント', account_settings_user_path(current_user) %></p>
+<p><%= link_to 'プロフィール', profile_settings_user_path(current_user) %></p>
+
+<%= link_to "編集", edit_profile_path(current_user) %>
+
+<h2>プロフィール</h2>
+
+
+<h3>アイコン画像：<% if @user.avatar.attached? %><%= image_tag @user.avatar.variant(resize: "20x20") %></h3>
+
+<% else %>
+  <p>利用可能なアバターはありません</p>
+
+<% end %>
+
+<h3>名前：<%= @user.name %></h3>
+
+<h3>自己紹介：<%= @user.introduction %></h3>
+
+
+

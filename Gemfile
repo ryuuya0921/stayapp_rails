@@ -3,6 +3,23 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
+gem 'bootstrap', '~> 5.1.3'
+gem 'jquery-rails'
+
+gem 'byebug'
+
+#画像アップロード
+gem 'image_processing', '~> 1.2'
+
+#パスワードの暗号化機能を追加
+gem 'bcrypt', '~> 3.1.7'
+
+#認証機能を簡単に実装する機能
+gem 'devise'
+
+#Ruby 3.1ではRubyに同梱されるpsych のバージョンが違うので下記を追加
+gem 'psych', '~> 3.1'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '= 6.1.3.2'
 

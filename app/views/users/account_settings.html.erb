@@ -1,0 +1,11 @@
+<p>設定</p>
+
+<p><%= link_to 'アカウント', account_settings_user_path(current_user) %></p>
+<p><%= link_to 'プロフィール', profile_settings_user_path(current_user) %></p>
+<p><%= link_to '編集', edit_user_path(current_user) %></p>
+
+
+<!-- app/views/users/show.html.erb -->
+<h2>アカウント</h2>
+<p>Email: <%= @user.email %></p>
+<p>Password: *********</p>

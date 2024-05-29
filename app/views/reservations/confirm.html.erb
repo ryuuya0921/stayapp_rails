@@ -1,0 +1,21 @@
+<h2>予約内容確認</h2>
+
+<% if @reservation.present? %>
+  <%= form_with model: @reservation, url: reservations_path, method: :post, local: true do |form| %>
+    <p>チェックイン: <%= @reservation.check_in.strftime("%Y年%m月%d日") %></p>
+    <p>チェックアウト: <%= @reservation.check_out.strftime("%Y年%m月%d日") %></p>
+    <p>日数: <%= (@reservation.check_out - @reservation.check_in).to_i %> 日</p>
+    <p>人数: <%= @reservation.number_of_guests %> 人</p>
+    <p><strong>お支払い金額:</strong> <%= number_to_currency(@reservation.total_price, unit: "¥", precision: 0, format: "%u%n円") %></p>
+
+    <%= form.hidden_field :check_in, value: @reservation.check_in %>
+    <%= form.hidden_field :check_out, value: @reservation.check_out %>
+    <%= form.hidden_field :number_of_guests, value: @reservation.number_of_guests %>
+    <%= form.hidden_field :room_id, value: @reservation.room_id %>
+    <%= form.submit 'この内容で予約する', class: 'button' %>
+  <% end %>
+<% else %>
+  <p>予約情報が見つかりません。</p>
+<% end %>
+
+<%= link_to 'キャンセル', room_path, class: 'cancel-button' %>

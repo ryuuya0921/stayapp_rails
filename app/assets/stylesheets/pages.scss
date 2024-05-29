@@ -1,0 +1,167 @@
+// 変数定義
+$main-font-color: rgb(255, 255, 255);
+$main-font-size: 2.5em; // テキストのサイズを調整
+$box-radius: 15px;
+$area-gap: 20px;
+$image-width: 300px;
+$image-height: 400px;
+$text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+.image-overlay-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 100px; // 下部に余白を追加
+
+  .background-image {
+    width: 100%; // コンテナに合わせて画像を拡大
+    height: auto; // 画像のアスペクト比を保持
+    border-radius: $box-radius; // 画像の角を丸くする
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); // 完全に中央に調整
+    color: $main-font-color; // テキストの色
+    font-size: $main-font-size; // テキストのサイズ
+    text-shadow: $text-shadow; // テキストの視認性を高めるための影
+    z-index: 1; // テキストを手前に表示
+    font-weight: bold; // テキストを太字に
+  }
+}
+
+.areaimg {
+  margin-bottom: 50px; // 下部に余白を追加
+  border-bottom: 3px solid #ff838b;
+  text-align: left; // コンテンツを左寄せ
+  width: 45%; // 幅を調整
+  max-width: 800px; // 最大幅を設定
+  margin-left: 20px; // 左側の余白を調整
+  margin-right: auto; // 右側の余白を調整
+  padding-left: 10px; // 内側の余白を追加
+  padding-right: 10px; // 内側の余白を追加
+}
+
+@media (max-width: 600px) {
+  .areaimg {
+    border-bottom-width: 2px; // 小さいデバイスで線を細くする
+  }
+}
+
+
+// .areaimg {
+//   margin-bottom: 50px; // 下部に余白を追加
+//   border-bottom: 3px solid #ff838b;
+//   text-align: left; // コンテンツを右寄せ
+//   width: 15%; // 線の長さを調整
+//   margin-left: auto; // 左側の余白を調整
+//   margin-right: auto; // 右側の余白を調整
+// }
+
+.areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $area-gap; // アイテム間の間隔を調整
+
+  .area {
+    text-align: center;
+    flex: 1 1 calc(25% - #{$area-gap}); // 各エリアが等間隔で並ぶように調整
+    box-sizing: border-box;
+    margin-bottom: 20px; // エリア内の項目間に余白を追加
+    position: relative;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      width: $image-width; // 画像の幅を調整
+      height: $image-height; // 画像の高さを調整
+      border-radius: $box-radius; // 角を丸くする
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1); // マウスホバー時に拡大
+      }
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: $main-font-color; // テキストの色を設定
+      font-weight: bold; // テキストを太字に
+    }
+
+    .area-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px;
+      transition: opacity 0.3s ease;
+
+      p {
+        color: $main-font-color;
+        font-size: $main-font-size;
+        font-weight: bold;
+      }
+    }
+
+    &:hover .area-overlay {
+      opacity: 1; // マウスホバー時にオーバーレイを表示
+    }
+  }
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 上部に配置 */
+  align-items: center;
+  height: 100vh; /* 画面全体の高さ */
+  background-size: cover;
+  background-position: center;
+  padding-top: 50px; /* 上部からの余白 */
+}
+
+.search-form {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* フォームと次の要素の間に余白を追加 */
+  width: 80%; /* 幅を調整 */
+  max-width: 600px; /* 最大幅を設定 */
+  margin-left: auto; /* 左側の余白を調整 */
+  margin-right: auto; /* 右側の余白を調整 */
+}
+
+.search-form input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}

@@ -1,0 +1,22 @@
+<h2><%= @area %>の部屋一覧</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>料金</th>
+      <th>住所</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.name %></td>
+        <td><%= room.description %></td>
+        <td><%= number_to_currency(room.price, unit: "¥", precision: 0, format: "%u%n円") %></td>
+        <td><%= room.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

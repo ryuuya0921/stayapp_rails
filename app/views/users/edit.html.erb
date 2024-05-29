@@ -1,0 +1,30 @@
+<!-- app/views/users/edit.html.erb -->
+
+<h2>アカウント</h2>
+
+<%= form_with(model: @user) do |form| %>
+  <div>
+    <%= form.label :email, "新しいメールアドレス：" %>
+    <%= form.email_field :email, placeholder: "新しいメールアドレスを入力" %>
+  </div>
+
+  <div>
+    <%= form.label :password, "新しいパスワード：" %>
+    <%= form.password_field :password, placeholder: "新しいパスワード" %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "確認用パスワード：" %>
+    <%= form.password_field :password_confirmation, placeholder: "確認用パスワード" %>
+  </div>
+
+  <div>
+    <%= form.label :current_password, "現在のパスワード：" %>
+    <%= form.password_field :current_password, placeholder: "現在のパスワード" %>
+  </div>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
+
+<% end %>
